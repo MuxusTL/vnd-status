@@ -1,7 +1,7 @@
-# vnd-status — Stunning Status Pages
+# vnd-status / Stunning Status Pages
 
 <p align="center">
-  <img src="https://vietnamdong.vercel.app/logo-mark.png" width="100%" alt="Status page preview">
+  <img src="https://vietnamdong.vercel.app/favicon-32.png" width="100%" alt="LoL">
 </p><p align="center">
   <strong>A modern, self-hosted status page for monitoring service availability, uptime, and incidents.</strong>
 </p><p align="center">
@@ -121,5 +121,5 @@ Please refer to ""LICENSE"" (LICENSE) for licensing terms and retain required co
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/MuxusTL">MuxusTL</a>
+  Author <a href="https://github.com/MuxusTL">MuxusTL</a>
 </p>
