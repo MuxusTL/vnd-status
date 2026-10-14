@@ -1,7 +1,7 @@
-vnd-status — Stunning Status Pages
+# vnd-status — Stunning Status Pages
 
 <p align="center">
-  <img src="https://kener.ing/newbg.png?v=1" width="100%" alt="Status page preview">
+  <img src="https://vietnamdong.vercel.app/logo-mark.png" width="100%" alt="Status page preview">
 </p><p align="center">
   <strong>A modern, self-hosted status page for monitoring service availability, uptime, and incidents.</strong>
 </p><p align="center">
