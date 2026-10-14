@@ -1,7 +1,7 @@
 # vnd-status / Stunning Status Pages
 
 <p align="center">
-  <img src="https://vietnamdong.vercel.app/favicon-32.png" width="100%" alt="LoL">
+  <img src="https://vietnamdong.vercel.app/logo-mark.png" width="100%" alt="LoL">
 </p><p align="center">
   <strong>A modern, self-hosted status page for monitoring service availability, uptime, and incidents.</strong>
 </p><p align="center">
@@ -69,11 +69,13 @@ Manual Installation
 
 Clone the repository and install its dependencies:
 
+```bash
 git clone https://github.com/MuxusTL/vnd-status.git
 cd vnd-status
 npm install
 cp .env.example .env
 npm run dev
+```
 
 Configure your environment variables in ".env" before deploying the application.
 
@@ -83,7 +85,9 @@ The repository includes Docker-related configuration files for containerized dep
 
 Review ""docker-compose.yml"" (docker-compose.yml) and ""Dockerfile"" (Dockerfile) to configure your deployment.
 
+```bash
 docker compose up -d
+```
 
 For production deployments, configure persistent storage, environment variables, networking, and any required secrets before exposing the service publicly.
 
