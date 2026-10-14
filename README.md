@@ -18,7 +18,7 @@
   <a href="https://github.com/rajnandan1/kener">Original Project: Kener</a>
 </p>---
 
-What is vnd-status?
+## What is vnd-status?
 
 vnd-status is a status page project based on "Kener" (https://github.com/rajnandan1/kener), an open-source status page system built with SvelteKit and Node.js.
 
@@ -26,7 +26,7 @@ It provides a foundation for publishing service status, monitoring availability,
 
 Features
 
-📊 Monitoring & Availability
+## Monitoring & Availability
 
 - Monitor service availability and uptime
 - HTTP endpoint polling and API-based integrations
@@ -34,7 +34,7 @@ Features
 - Schedule monitoring checks
 - Display service status and availability history
 
-🎨 Customization
+## Customization
 
 - Modern, responsive status page interface
 - Custom branding and status page configuration
@@ -42,14 +42,14 @@ Features
 - Internationalization support inherited from Kener
 - Custom domain and embedding capabilities, subject to configuration
 
-🚨 Incident Management
+## Incident Management
 
 - Publish incidents and service disruptions
 - Communicate incident updates
 - Provide status information to users
 - Use available APIs for incident management
 
-🧑‍💻 Deployment
+## Deployment
 
 - Self-hosted deployment
 - Node.js-based development workflow
@@ -60,12 +60,12 @@ Features depend on the underlying Kener version and the project's configuration.
 
 Installation
 
-Requirements
+## Requirements
 
 - Node.js and npm compatible with the project
 - Git
 
-Manual Installation
+## Manual Installation
 
 Clone the repository and install its dependencies:
 
@@ -79,7 +79,7 @@ npm run dev
 
 Configure your environment variables in ".env" before deploying the application.
 
-Docker
+## Docker
 
 The repository includes Docker-related configuration files for containerized deployment.
 
@@ -91,27 +91,27 @@ docker compose up -d
 
 For production deployments, configure persistent storage, environment variables, networking, and any required secrets before exposing the service publicly.
 
-Technologies
+## Technologies
 
 - "SvelteKit" (https://kit.svelte.dev/)
 - "Node.js" (https://nodejs.org/)
 - "shadcn-svelte" (https://www.shadcn-svelte.com/)
 - Docker for containerized deployment
 
-Documentation
+## Documentation
 
 - "Project Documentation" (docs/)
 - "API Specification — OpenAPI" (openapi.yaml)
 - "GitHub Issues" (https://github.com/MuxusTL/vnd-status/issues)
 - "Original Kener Documentation" (https://kener.ing/docs/home)
 
-Contributing
+## Contributing
 
 Contributions, bug reports, and suggestions are welcome.
 
 Please open an issue before proposing major changes, and make sure your changes preserve the project's configuration and deployment compatibility.
 
-Credits
+## Credits
 
 vnd-status is based on "Kener" (https://github.com/rajnandan1/kener).
 
