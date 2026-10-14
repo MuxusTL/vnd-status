@@ -1,217 +1,125 @@
-# Kener - Stunning Status Pages
+vnd-status — Stunning Status Pages
 
 <p align="center">
-	<img src="https://kener.ing/newbg.png?v=1" width="100%" height="auto" class="rounded-lg shadow-lg" alt="kener example illustration">
-</p>
+  <img src="https://kener.ing/newbg.png?v=1" width="100%" alt="Status page preview">
+</p><p align="center">
+  <strong>A modern, self-hosted status page for monitoring service availability, uptime, and incidents.</strong>
+</p><p align="center">
+  <a href="https://github.com/MuxusTL/vnd-status">
+    <img src="https://img.shields.io/github/stars/MuxusTL/vnd-status?style=social" alt="GitHub Stars">
+  </a>
+  <img src="https://img.shields.io/badge/self--hosted-yes-blue" alt="Self-hosted">
+  <img src="https://img.shields.io/badge/status-open--source-green" alt="Open Source">
+</p><p align="center">
+  <a href="https://github.com/MuxusTL/vnd-status">GitHub Repository</a>
+  ·
+  <a href="https://github.com/MuxusTL/vnd-status/issues">Issues</a>
+  ·
+  <a href="https://github.com/rajnandan1/kener">Original Project: Kener</a>
+</p>---
 
-<p align="center">
-	<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/rajnandan1/kener?label=Star%20Repo&style=social">
-	<a href="https://github.com/ivbeg/awesome-status-pages"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome status page" /></a>
-    <a href="https://awesome-selfhosted.net/tags/status--uptime-pages.html#kener"><img src="https://awesome.re/mentioned-badge.svg" alt="Awesome self hosted" /></a>
-</p>
+What is vnd-status?
 
-<p align="center">
-  <a href="https://hub.docker.com/r/rajnandan1/kener"><img src="https://img.shields.io/docker/pulls/rajnandan1/kener" alt="Docker Kener" /></a>
-  <a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=latest"><img alt="Docker Image Size" src="https://img.shields.io/docker/image-size/rajnandan1/kener/latest?logo=docker&logoColor=white&label=debian" /></a>
-  <a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=alpine"><img alt="Docker Image Size" src="https://img.shields.io/docker/image-size/rajnandan1/kener/alpine?logo=docker&logoColor=white&label=alpine" /></a>
-</p>
+vnd-status is a status page project based on "Kener" (https://github.com/rajnandan1/kener), an open-source status page system built with SvelteKit and Node.js.
 
-<p align="center">
-  <a href="https://github.com/rajnandan1/kener/actions/workflows/publish-images.yml"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/rajnandan1/kener/publish-images.yml" /></a>
-  <a href="https://github.com/rajnandan1/kener/commit/HEAD"><img src="https://img.shields.io/github/last-commit/rajnandan1/kener/main" alt="" /></a>
-  <a href="https://github.com/rajnandan1/kener/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/rajnandan1/kener.svg" /></a>
-</p>
+It provides a foundation for publishing service status, monitoring availability, and communicating incidents through a clean, customizable web interface.
 
-<p align="center">
-	<a href="https://www.producthunt.com/posts/kener-2" target="_blank">
-		<img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=kener-2&theme=light" alt="Kener on Product Hunt">
-	</a>
-</p>
+Features
 
-<p align="center">
-	<picture>
-  		<source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f514/512.webp" type="image/webp">
-  		<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f514/512.gif" alt="🔔" width="32" height="32">
-	</picture>
-	<picture>
-  		<source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.webp" type="image/webp">
-  		<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.gif" alt="🚀" width="32" height="32">
-	</picture>
-	<picture>
-  		<source srcset="https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a7/512.webp" type="image/webp">
- 		<img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f6a7/512.gif" alt="🚧" width="32" height="32">
-	</picture>
-</p>
+📊 Monitoring & Availability
 
-| [🌍 Live Server](https://kener.ing) | [🎉 Quick Start](https://kener.ing/docs/quick-start) | [🗄 Documentation](https://kener.ing/docs/home) |
-| ----------------------------------- | ---------------------------------------------------- | ----------------------------------------------- |
+- Monitor service availability and uptime
+- HTTP endpoint polling and API-based integrations
+- Organize monitors into custom sections
+- Schedule monitoring checks
+- Display service status and availability history
 
-## What is Kener?
+🎨 Customization
 
-**Kener** is a sleek and lightweight status page system built with **SvelteKit** and **NodeJS**. It’s not here to replace heavyweights like Datadog or Atlassian but rather to offer a simple, modern, and hassle-free way to set up a great-looking status page with minimal effort.
+- Modern, responsive status page interface
+- Custom branding and status page configuration
+- Light and dark themes
+- Internationalization support inherited from Kener
+- Custom domain and embedding capabilities, subject to configuration
 
-Designed with **ease of use** and **customization in mind**, Kener provides all the essential features you’d expect from a status page—without unnecessary complexity.
+🚨 Incident Management
 
-### Why Kener?
+- Publish incidents and service disruptions
+- Communicate incident updates
+- Provide status information to users
+- Use available APIs for incident management
 
-✅ &nbsp;Minimal overhead &ndash; Set up quickly with a clean, modern UI<br>
-✅ &nbsp;Customizable &ndash; Easily tailor it to match your brand<br>
-✅ &nbsp;Open-source & free &ndash; Because great tools should be accessible to everyone
+🧑‍💻 Deployment
 
-### What's in a Name?
+- Self-hosted deployment
+- Node.js-based development workflow
+- Docker and Docker Compose support
+- Configurable environment variables
 
-“Kener” is inspired by the Assamese word _“Kene”_, meaning _“how’s it going?”_. The _‘.ing’_ was added because, well… that domain was available. 😄
+Features depend on the underlying Kener version and the project's configuration.
 
-## Installation
+Installation
 
-### Manual
+Requirements
 
-```shell
-# Clone the repository
-git clone https://github.com/rajnandan1/kener.git
-cd kener
+- Node.js and npm compatible with the project
+- Git
+
+Manual Installation
+
+Clone the repository and install its dependencies:
+
+git clone https://github.com/MuxusTL/vnd-status.git
+cd vnd-status
 npm install
 cp .env.example .env
 npm run dev
-```
 
-### Docker
+Configure your environment variables in ".env" before deploying the application.
 
-Official Docker images for **Kener** are available on [Docker Hub](https://hub.docker.com/r/rajnandan1/kener). Multiple versions are maintained to support different use cases.
+Docker
 
-<a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=3.2.18"><img src="https://img.shields.io/badge/Latest_Stable_Release-3.2.18-blue" alt="Kener latest stable version: 3.2.18" /></a>
+The repository includes Docker-related configuration files for containerized deployment.
 
-#### Available Tags
+Review ""docker-compose.yml"" (docker-compose.yml) and ""Dockerfile"" (Dockerfile) to configure your deployment.
 
-<table>
-	<tr>
-		<th>Image Tag</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-		<td align="left" colspan="2" style="color:#A81D33;text-align:left;">Debian 12 <small>(Bookwork Slim)</small> w/ Node.js v23.7.0 &nbsp;<strong><em>(default)</em></strong></td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=latest" target="_blank"><code>latest</code></td>
-		<td>Latest stable release (aka 3.2.18)</td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=3.2.18" target="_blank"><code>3.2.18</code></a></td>
-		<td>Specific release version</td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=3.2" target="_blank"><code>3.2</code></a></td>
-		<td>Major-minor version tag pointing to the latest patch (3.2.18) release within that minor version (3.2.x)</td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=3" target="_blank"><code>3</code></a></td>
-		<td>Major version tag pointing to the latest stable (3.2.18) release within that major version (3.x.x)</td>
-	</tr>
-	<tr>
-		<td align="left" colspan="2" style="color:#0D597F;text-align:left;">Alpine Linux 3.21 w/ Node.js v23.7.0 &nbsp;<strong><em>(smallest image size)</em></strong></td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=alpine" target="_blank"><code>alpine</code></td>
-		<td>Latest stable release (aka 3.2.18)</td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=3.2.18-alpine" target="_blank"><code>3.2.18-alpine</code></a></td>
-		<td>Specific release version</td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=3.2-alpine" target="_blank"><code>3.2-alpine</code></a></td>
-		<td>Major-minor version tag pointing to the latest patch (3.2.18) release within that minor version (3.2.x)</td>
-	</tr>
-	<tr>
-		<td><a href="https://hub.docker.com/r/rajnandan1/kener/tags?page=1&ordering=last_updated&name=3-alpine" target="_blank"><code>3-alpine</code></a></td>
-		<td>Major version tag pointing to the latest stable (3.2.18) release within that major version (3.x.x)</td>
-	</tr>
-</table>
+docker compose up -d
 
-#### Usage
+For production deployments, configure persistent storage, environment variables, networking, and any required secrets before exposing the service publicly.
 
-Pull the latest stable version:
+Technologies
 
-```sh
-docker pull rajnandan1/kener:latest
-```
+- "SvelteKit" (https://kit.svelte.dev/)
+- "Node.js" (https://nodejs.org/)
+- "shadcn-svelte" (https://www.shadcn-svelte.com/)
+- Docker for containerized deployment
 
-Or use the smaller, Alpine-based variant:
+Documentation
 
-```sh
-docker pull rajnandan1/kener:alpine
-```
+- "Project Documentation" (docs/)
+- "API Specification — OpenAPI" (openapi.yaml)
+- "GitHub Issues" (https://github.com/MuxusTL/vnd-status/issues)
+- "Original Kener Documentation" (https://kener.ing/docs/home)
 
-For a production setup, refer to the sample [docker-compose.yml](https://github.com/rajnandan1/kener/blob/main/docker-compose.yml).
-This keeps things clean, structured, and easy to read while preserving all the details.
+Contributing
 
-### One Click
+Contributions, bug reports, and suggestions are welcome.
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template/spSvic?referralCode=1Pn7vs)
+Please open an issue before proposing major changes, and make sure your changes preserve the project's configuration and deployment compatibility.
 
-## Features
+Credits
 
-Here are some of the features that you get out of the box. Please read the documentation to know how to use them.
+vnd-status is based on "Kener" (https://github.com/rajnandan1/kener).
 
-### 📊 &nbsp;Monitoring and Tracking
+Thanks to the original Kener developers and open-source contributors for building the foundation this project uses.
 
-- Advanced **application performance monitoring** tools
-- **Real-time network monitoring** capabilities
-- Supports **polling HTTP endpoints** or **pushing data** via REST APIs
-- **Timezone auto-adjustment** for visitors
-- Organize monitors into **custom sections**
-- **Cron-based scheduling** (minimum: **every minute**)
-- **Create complex API polls** (chaining, secrets, etc.)
-- Set a **default status** for monitors
-- Supports **base path hosting in Kubernetes (k8s)**
-- **Pre-built Docker images** for easy deployment
+- Original repository: https://github.com/rajnandan1/kener
+- Original author: "rajnandan1" (https://github.com/rajnandan1)
 
-### 🎨 &nbsp;Customization and Branding
+Please refer to ""LICENSE"" (LICENSE) for licensing terms and retain required copyright and attribution notices.
 
-- Fully **customizable status page**
-- **Badge generation** for status and uptime tracking
-- Support for **custom domains**
-- Embed monitors as **iframes or widgets**
-- **Light & Dark Mode**
-- **Internationalization (i18n) support**
-- **Sleek, beautifully crafted UI**
+---
 
-### 🚨 &nbsp;Incident Management
-
-- **Incident tracking & communication** tools
-- **Comprehensive APIs** for incident management
-
-### 🧑‍💻 &nbsp;User Experience and Design
-
-- **Accessible & user-friendly interface**
-- **Quick & easy installation**
-- **Responsive design** for all devices
-- **Auto SEO & Social Media ready**
-- **Server-Side Rendering (SSR) for better performance**
-
-<div align="left">
-    <img alt="Visitor Stats" src="https://widgetbite.com/stats/rajnandan"/>
-</div>
-
-## Technologies Used
-
--   [SvelteKit](https://kit.svelte.dev/)
--   [shadcn-svelte](https://www.shadcn-svelte.com/)
-
-## Support Me
-
-If you’re enjoying Kener and want to support its development, consider sponsoring me on GitHub or treating me to a coffee. Your support helps keep the project growing! 🚀
-
-[Sponsor Me Using Github](https://github.com/sponsors/rajnandan1)
-
-☕ &nbsp;[Buy Me a Coffee](https://www.buymeacoffee.com/rajnandan1)
-
-![image](https://badges.pufler.dev/visits/rajnandan1/kener)
-
-## Contributing
-
-If you want to contribute to Kener, please read the [Contribution Guide](https://github.com/rajnandan1/kener/blob/main/.github/CONTRIBUTING.md).
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=rajnandan1/kener&type=Date)](https://star-history.com/#rajnandan1/kener&Date)
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/MuxusTL">MuxusTL</a>
+</p>
