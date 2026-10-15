@@ -8,7 +8,7 @@ const isProduction = VITE_BUILD_ENV === "production";
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: adapter({ runtime: 'nodejs20.x' }),
+    adapter: adapter({ runtime: 'nodejs22.x' }),
     paths: {
       base: basePath,
     },
