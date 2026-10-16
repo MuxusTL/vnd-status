@@ -1,0 +1,145 @@
+const Back = "Terug";
+const Badge = "Badge";
+const DEGRADED = "BEPERKT";
+const DOWN = "NIET BEREIKBAAR";
+const Dark = "Donker";
+const Days = "Dagen";
+const Embed = "Insluiten";
+const IDENTIFIED = "GEIDENTIFICEERD";
+const INVESTIGATING = "ONDERZOEK BEZIG";
+const Light = "Licht";
+const Login = "Inloggen";
+const MAINTENANCE = "ONDERHOUD";
+const MONITORING = "MONITOREN";
+const Mode = "Modus";
+const Pinging = "Pingen";
+const RESOLVED = "OPGELOST";
+const Share = "Delen";
+const Standard = "Standaard";
+const Status = "Status";
+const Subscribe = "Abonneren";
+const Theme = "Thema";
+const Today = "Vandaag";
+const UP = "BEREIKBAAR";
+const Updates = "Updates";
+const Uptime = "Uptime";
+const nl = {
+  "%status for %duration": "%status voor %duration",
+  "120 Days": "120 dagen",
+  "14 Days": "14 dagen",
+  "150 Days": "150 dagen",
+  "180 Days": "180 dagen",
+  "30 Days": "30 dagen",
+  "60 Days": "60 dagen",
+  "7 Days": "7 dagen",
+  "90 Days": "90 dagen",
+  "Availability per Component": "Beschikbaarheid per component",
+  "All Systems are Degraded": "Alle systemen werken met beperkte functionaliteit",
+  "All Systems are Down": "Alle systemen zijn niet bereikbaar",
+  "All Systems are Operational": "Alle systemen zijn operationeel",
+  "All Systems are in Maintenance": "Alle systemen zijn in onderhoud",
+  Back,
+  "Badge Copied": "Badge gekopieerd",
+  Badge,
+  "Browse Events": "Evenementen bekijken",
+  "Change Email": "E-mail wijzigen",
+  "Code Copied": "Code gekopieerd",
+  "Confirm Login": "Inloggen bevestigen",
+  "Copy Code": "Kopieer code",
+  "Copy Link": "Kopieer link",
+  DEGRADED,
+  DOWN,
+  Dark,
+  Days,
+  "Embed this monitor using &#x3C;script&#x3E; or &#x3C;iframe&#x3E; in your app.": "Sluit deze monitor in met behulp van <script> of <iframe> in je app.",
+  Embed,
+  "Enter the code": "Voer de code in",
+  "Enter your email": "Voer je e-mailadres in",
+  "Enter your email to log in. If you are not subscribed, you will be prompted to subscribe.": "Voer je e-mailadres in om in te loggen. Als je nog niet geabonneerd bent, word je gevraagd om je te abonneren.",
+  "Get SVG badge for this monitor": "SVG-badge ophalen voor deze monitor",
+  "Get a LIVE Status for this monitor": "LIVE-status ophalen voor deze monitor",
+  IDENTIFIED,
+  INVESTIGATING,
+  "Incident Updates": "Incident updates",
+  "LIVE Status": "LIVE status",
+  "Lasted for about %lastedFor": "Duurde ongeveer %lastedFor",
+  Light,
+  "Link Copied": "Link gekopieerd",
+  Login,
+  MAINTENANCE,
+  MONITORING,
+  "Maintenance Completed": "Onderhoud voltooid",
+  "Maintenance in Progress": "Onderhoud bezig",
+  "Manage Subscription": "Abonnement beheren",
+  Mode,
+  "No Data": "Geen gegevens",
+  "No Incident in %date": "Geen incident op %date",
+  "No Incidents": "Geen incidenten",
+  "No Monitor Found": "Geen monitor gevonden",
+  "No Updates Yet": "Nog geen updates",
+  "Ongoing Incidents": "Lopende incidenten",
+  Pinging,
+  "Please select specific monitors to receive updates from.": "Selecteer specifieke monitoren waarvan je updates wilt ontvangen.",
+  RESOLVED,
+  "Recent Incidents": "Recente incidenten",
+  "Recent Maintenances": "Recente onderhoudsbeurten",
+  "Share this monitor using a link with others": "Deel deze monitor met anderen via een link",
+  Share,
+  "Some Systems are not working as expected": "Sommige systemen werken niet zoals verwacht",
+  "Some Systems Degraded": "Sommige systemen werken met beperkte functionaliteit",
+  "Some Systems Down": "Sommige systemen zijn niet bereikbaar",
+  "Some Systems in Maintenance": "Sommige systemen zijn in onderhoud",
+  Standard,
+  "Started %startedAt, lasted for %lastedFor": "Begonnen ongeveer %startedAt geleden, duurde ongeveer %lastedFor",
+  "Started %startedAt, still ongoing": "Begonnen ongeveer %startedAt geleden, nog steeds bezig",
+  "Started %startedAt, will last for %lastedFor more": "Begint %startedAt, zal nog ongeveer %lastedFor duren",
+  "Starts %startedAt, will last for %lastedFor": "Begint over %startedAt, zal ongeveer %lastedFor duren",
+  "Starts %startedAt": "Begint over %startedAt",
+  "Status OK": "Status OK",
+  Status,
+  Subscribe,
+  "Subscribe to Updates": "Abonneren op updates",
+  "Subscribe to all monitors": "Abonneren op alle monitoren",
+  "Switch to your timezone": "Schakel over naar je tijdzone",
+  Theme,
+  "There are no upcoming maintenances": "Er zijn geen geplande onderhoudsperiodes",
+  "Timezone set to %tz": "Tijdzone ingesteld op %tz",
+  Today,
+  UP,
+  "Update Subscription": "Abonnement bijwerken",
+  "Upcoming Maintenance": "Aankomend onderhoud",
+  "Upcoming Maintenances": "Aankomende onderhoudsperiodes",
+  Updates,
+  Uptime,
+  "View in detail": "Bekijk in detail",
+  "We have sent a code to your email. Please enter it below to confirm your login": "We hebben een code naar je e-mailadres gestuurd. Voer deze hieronder in om je login te bevestigen",
+  "You are logged in as %email": "Je bent ingelogd als %email"
+};
+export {
+  Back,
+  Badge,
+  DEGRADED,
+  DOWN,
+  Dark,
+  Days,
+  Embed,
+  IDENTIFIED,
+  INVESTIGATING,
+  Light,
+  Login,
+  MAINTENANCE,
+  MONITORING,
+  Mode,
+  Pinging,
+  RESOLVED,
+  Share,
+  Standard,
+  Status,
+  Subscribe,
+  Theme,
+  Today,
+  UP,
+  Updates,
+  Uptime,
+  nl as default
+};

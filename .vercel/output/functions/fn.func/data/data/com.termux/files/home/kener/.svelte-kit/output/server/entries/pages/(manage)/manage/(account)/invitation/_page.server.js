@@ -1,0 +1,36 @@
+import { ax as GetActiveInvitationByToken, Q as UpdateUserData, ay as UpdateInvitationStatusToAccepted } from "../../../../../../chunks/controller.js";
+import { I as INVITE_VERIFY_EMAIL } from "../../../../../../chunks/db.js";
+async function load({ parent, url }) {
+  const query = url.searchParams;
+  const invitation_token = query.get("token");
+  let invite = await GetActiveInvitationByToken(invitation_token);
+  let header = "Error";
+  let message = "Invalid Invitation Token. The invitation token is invalid or expired.";
+  let error = true;
+  if (!!invite) {
+    if (invite.invitation_type === INVITE_VERIFY_EMAIL) {
+      let updateData = {
+        userID: invite.invited_user_id,
+        updateKey: "is_verified",
+        updateValue: 1
+      };
+      try {
+        let updateResp = await UpdateUserData(updateData);
+        let updateInvitationResp = await UpdateInvitationStatusToAccepted(invitation_token);
+        error = false;
+        header = "Email Verified Successfully";
+        message = "Thanks for verifying your email";
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  }
+  return {
+    error,
+    message,
+    header
+  };
+}
+export {
+  load
+};

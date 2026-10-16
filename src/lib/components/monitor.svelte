@@ -186,6 +186,9 @@
     }
   }
   let showDailyDataModal = false;
+  let selectedTs = null;
+  let selectedBar = null;
+  let selectedBarLeftPercent = null;
   let dateFetchedFor = "";
   let dayUptime = "NA";
   let loadingDayData = false;
@@ -193,6 +196,29 @@
   function dailyDataGetter(e, bar, incidentObj) {
     if (embed) {
       return;
+    }
+
+    if (selectedTs === bar.timestamp && showDailyDataModal) {
+      showDailyDataModal = false;
+      selectedTs = null;
+      selectedBar = null;
+      return;
+    }
+
+    selectedTs = bar.timestamp;
+    selectedBar = bar;
+
+    try {
+      const button = e?.currentTarget || e?.target?.closest("button");
+      const container = button?.parentElement;
+      if (button && container) {
+        const containerRect = container.getBoundingClientRect();
+        const buttonRect = button.getBoundingClientRect();
+        const percent = ((buttonRect.left + buttonRect.width / 2 - containerRect.left) / containerRect.width) * 100;
+        selectedBarLeftPercent = Math.max(8, Math.min(92, percent));
+      }
+    } catch (err) {
+      selectedBarLeftPercent = 50;
     }
 
     let incidentIDs = incidentObj?.ids || [];
@@ -316,9 +342,11 @@
         use:clickOutsideAction
         on:clickoutside={(e) => {
           showDailyDataModal = false;
+          selectedTs = null;
+          selectedBar = null;
         }}
       >
-        <div class="daygrid90 flex w-full min-h-[50px] items-center justify-between gap-[1px] md:gap-[2px] py-1">
+        <div class="daygrid90 flex w-full min-h-[46px] items-center justify-between gap-[1.5px] sm:gap-[2px] py-1.5 overflow-x-hidden">
           {#each Object.entries(_90Day) as [ts, bar]}
             <button
               data-ts={ts}
@@ -329,24 +357,21 @@
               on:click={(e) => {
                 dailyDataGetter(e, bar, incidents[ts]);
               }}
-              class="oneline h-[34px] flex-1 min-w-0 {bar.border ? 'opacity-100' : 'opacity-20'} pb-1"
+              class="oneline h-[38px] flex-1 min-w-0 {bar.border ? 'opacity-100' : 'opacity-25'} {selectedTs == ts ? 'is-active' : ''} p-0 flex items-center justify-center transition-all group"
             >
               <div
-                class="oneline-in h-[30px] w-full max-w-[6px] bg-{bar.cssClass} mx-auto rounded-{monitor.pageData.barRoundness.toUpperCase() ==
-                'SHARP'
-                  ? 'none'
-                  : 'sm'}"
+                class="oneline-in h-[32px] sm:h-[34px] w-full bg-{bar.cssClass} mx-auto rounded-[3px] group-hover:scale-y-110 group-hover:brightness-110 transition-all {selectedTs == ts ? 'scale-y-110 brightness-125 ring-2 ring-primary ring-offset-1 ring-offset-background' : ''}"
               ></div>
               <!-- incident dot -->
               {#if !!incidents[ts]}
                 <div
                   class="bg-api-{incidents[
                     ts
-                  ].monitor_impact.toLowerCase()} comein absolute -bottom-[3px] left-1/2 -translate-x-1/2 h-[4px] w-[4px] rounded-full"
+                  ].monitor_impact.toLowerCase()} comein absolute -bottom-[3px] left-1/2 -translate-x-1/2 h-[4px] w-[4px] rounded-full ring-1 ring-background"
                 ></div>
               {/if}
             </button>
-            {#if bar.showDetails}
+            {#if bar.showDetails && !showDailyDataModal}
               <div class="show-hover absolute text-sm">
                 <div class="text-{bar.textClass} text-xs font-semibold">
                   {f(new Date(bar.timestamp * 1000), "EEEE, MMMM do, yyyy", selectedLang, $page.data.localTz)}
@@ -357,8 +382,16 @@
             {/if}
           {/each}
         </div>
+
+        <!-- OpenAI / Statuspage 90-day timeline footer -->
+        <div class="flex items-center justify-between text-[11px] font-medium text-muted-foreground/75 px-0.5 pt-1 pb-0.5 select-none">
+          <span>{uptimesRollers[rolledAt]?.text.includes("Today") ? l(lang, "Today") : `${uptimesRollers[rolledAt]?.text || "90 Days"} ${l(lang, "ago")}`}</span>
+          <div class="h-px flex-1 mx-3 bg-border/40"></div>
+          <span>{l(lang, "Today")}</span>
+        </div>
+
         {#if monitor.monitor_type === "GROUP" && !!!embed}
-          <div class="-mt-4 flex justify-end">
+          <div class="mt-2 flex justify-end">
             <Button
               variant="secondary"
               href="{base}?group={monitor.tag}"
@@ -374,69 +407,154 @@
 
         {#if showDailyDataModal}
           <div
-            transition:slide={{ direction: "bottom" }}
-            class="daily-data-modal absolute left-0 right-0 top-full mt-2 z-50 mx-auto w-full max-w-full sm:max-w-[560px] rounded-xl border bg-card p-3.5 shadow-2xl backdrop-blur-xl"
+            transition:slide={{ direction: "bottom", duration: 180 }}
+            class="daily-data-modal absolute left-0 right-0 top-full mt-3 z-50 mx-auto w-full max-w-full sm:max-w-[480px] rounded-2xl border border-border/80 bg-card/95 p-4 shadow-2xl backdrop-blur-xl"
           >
-            <div class="mb-2.5 flex items-center justify-between text-xs font-semibold">
-              <span class="font-bold text-foreground">{dateFetchedFor}</span>
-              <div class="flex items-center gap-2">
-                {#if !loadingDayData}
-                  <span class="font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
-                    <TrendingUp class="mr-1 inline h-3 w-3" />
-                    {dayUptime}%
+            {#if selectedBarLeftPercent !== null}
+              <div
+                class="pointer-events-none absolute -top-1.5 h-3 w-3 -translate-x-1/2 rotate-45 border-l border-t border-border/80 bg-card"
+                style="left: {selectedBarLeftPercent}%"
+              ></div>
+            {/if}
+
+            <!-- Header: Date and Close Button -->
+            <div class="mb-3 flex items-start justify-between gap-2 border-b border-border/50 pb-2.5">
+              <div>
+                <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                  {l(lang, "System Status")}
+                </p>
+                <p class="text-sm font-bold text-foreground">
+                  {dateFetchedFor}
+                </p>
+              </div>
+              <button
+                type="button"
+                class="flex h-6 w-6 items-center justify-center rounded-full text-muted-foreground hover:bg-secondary hover:text-foreground transition-all"
+                on:click={() => {
+                  showDailyDataModal = false;
+                  selectedTs = null;
+                  selectedBar = null;
+                }}
+              >
+                <X class="h-4 w-4" />
+              </button>
+            </div>
+
+            <!-- Status Overview Box (OpenAI / Statuspage design) -->
+            <div class="flex items-center justify-between rounded-xl bg-secondary/50 p-3 border border-border/40">
+              <div class="flex items-center gap-3">
+                {#if selectedBar?.cssClass === 'api-up' || selectedBar?.summaryStatus === 'Status OK' || dayUptime === '100.0000' || dayUptime === '100'}
+                  <!-- Operational Icon (OpenAI checkmark circle) -->
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-500 shrink-0">
+                    <svg width="18" height="18" viewBox="2 2 16 16" fill="none">
+                      <path d="M10 2C5.589 2 2 5.589 2 10C2 14.411 5.589 18 10 18C14.411 18 18 14.411 18 10C18 5.589 14.411 2 10 2ZM13.843 7.708L9.593 13.208C9.457 13.384 9.25 13.491 9.028 13.499C9.018 13.499 9.009 13.499 9 13.499C8.788 13.499 8.585 13.409 8.442 13.251L6.192 10.751C5.915 10.443 5.94 9.969 6.248 9.691C6.557 9.415 7.029 9.439 7.308 9.747L8.956 11.579L12.657 6.79C12.91 6.462 13.382 6.402 13.709 6.655C14.037 6.908 14.097 7.379 13.844 7.707L13.843 7.708Z" fill="currentColor"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-foreground">
+                      {l(lang, "Operational")}
+                    </p>
+                    <p class="text-[11px] text-muted-foreground">
+                      {l(lang, "No downtime recorded on this day")}
+                    </p>
+                  </div>
+                {:else if selectedBar?.cssClass?.includes('degraded')}
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-amber-500/15 text-amber-500 shrink-0">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-amber-600 dark:text-amber-400">
+                      {l(lang, "Degraded Performance")}
+                    </p>
+                    <p class="text-[11px] text-muted-foreground">
+                      {selectedBar?.summaryStatus || l(lang, "Performance issues recorded")}
+                    </p>
+                  </div>
+                {:else if selectedBar?.cssClass?.includes('down')}
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-500/15 text-rose-500 shrink-0">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-rose-600 dark:text-rose-400">
+                      {l(lang, "Service Outage")}
+                    </p>
+                    <p class="text-[11px] text-muted-foreground">
+                      {selectedBar?.summaryStatus || l(lang, "Outage recorded")}
+                    </p>
+                  </div>
+                {:else if selectedBar?.cssClass?.includes('maintenance')}
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/15 text-indigo-500 shrink-0">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5a2.25 2.25 0 00-2.25 2.25v3.25" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                      {l(lang, "Maintenance")}
+                    </p>
+                    <p class="text-[11px] text-muted-foreground">
+                      {selectedBar?.summaryStatus || l(lang, "Scheduled maintenance")}
+                    </p>
+                  </div>
+                {:else}
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground shrink-0">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold text-muted-foreground">
+                      {l(lang, "No Data")}
+                    </p>
+                    <p class="text-[11px] text-muted-foreground">
+                      {l(lang, "No data available")}
+                    </p>
+                  </div>
+                {/if}
+              </div>
+
+              <div>
+                {#if loadingDayData}
+                  <div class="flex items-center gap-1.5 px-2.5 py-1 text-xs text-muted-foreground">
+                    <Loader class="h-3.5 w-3.5 animate-spin" />
+                  </div>
+                {:else if dayUptime !== "NA" && !isNaN(Number(dayUptime))}
+                  <span class="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg border {Number(dayUptime) >= 99 ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' : Number(dayUptime) >= 95 ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20' : 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20'}">
+                    {Number(dayUptime).toFixed(2)}%
                   </span>
                 {/if}
-                <button
-                  type="button"
-                  class="flex h-5 w-5 items-center justify-center rounded-full text-muted-foreground hover:bg-secondary hover:text-foreground transition-all"
-                  on:click={() => { showDailyDataModal = false; }}
-                >
-                  <X class="h-3.5 w-3.5" />
-                </button>
               </div>
             </div>
+
+            <!-- Incident Updates on this day (if any) -->
             {#if dayIncidentsFull.length > 0}
-              <div class="-mx-2 mb-4 grid grid-cols-1">
-                <div class="col-span-1 px-2">
-                  <Badge variant="outline" class="border-0 pl-0">
-                    {l(lang, "Incident Updates")}
-                  </Badge>
+              <div class="mt-3 space-y-2">
+                <div class="flex items-center justify-between text-[11px] font-semibold text-muted-foreground">
+                  <span>{l(lang, "Incidents on this date")}</span>
+                  <span class="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-bold text-foreground">
+                    {dayIncidentsFull.length}
+                  </span>
                 </div>
-                {#each dayIncidentsFull as incident, index}
-                  <div class="col-span-1">
-                    <Incident {incident} {lang} index="incident-{index}" />
-                  </div>
-                {/each}
+                <div class="max-h-[220px] space-y-1.5 overflow-y-auto pr-0.5">
+                  {#each dayIncidentsFull as incident, index}
+                    <div class="rounded-xl border border-border/60 bg-card/60 p-2 text-xs">
+                      <Incident {incident} {lang} index="incident-{index}" />
+                    </div>
+                  {/each}
+                </div>
+              </div>
+            {:else if !loadingDayData && selectedBar?.cssClass !== 'api-up' && selectedBar?.summaryStatus !== 'Status OK'}
+              <div class="mt-2.5 rounded-lg border border-border/40 bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+                {l(lang, selectedBar?.summaryStatus || "Recorded service disruption")}
               </div>
             {/if}
-            <div class="flex flex-wrap">
-              {#if loadingDayData}
-                <LoaderBoxes />
-              {:else}
-                {#each Object.entries(_0Day) as [ts, bar]}
-                  <div data-index={bar.index} class="bg-{bar.cssClass} today-sq m-[1px] h-[10px] w-[10px]"></div>
-                  <div class="hiddenx relative">
-                    <div
-                      data-index={ts.index}
-                      class="message rounded border bg-black p-2 text-xs font-semibold text-white"
-                    >
-                      <p>
-                        <span class="text-{bar.cssClass}"> ● </span>
-
-                        {f(new Date(bar.timestamp * 1000), "hh:mm a", selectedLang, $page.data.localTz)}
-                      </p>
-                      {#if bar.status != "NO_DATA"}
-                        <p class="pl-2">
-                          {l(lang, bar.status)}
-                        </p>
-                      {:else}
-                        <p class="pl-2">-</p>
-                      {/if}
-                    </div>
-                  </div>
-                {/each}
-              {/if}
-            </div>
           </div>
         {/if}
       </div>

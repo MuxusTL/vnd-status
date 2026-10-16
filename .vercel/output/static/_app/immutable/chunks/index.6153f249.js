@@ -1,0 +1,1 @@
+import{E as o}from"./scheduler.0a362f98.js";function c(i,t){const e=o(document,"click",n=>{n.target!==null&&!i.contains(n.target)&&(i.dispatchEvent(new CustomEvent("clickoutside")),t==null||t())},!0);return{destroy(){e()}}}export{c};

@@ -1,0 +1,4 @@
+const locales = '[\n	{\n		"code": "en",\n		"name": "English"\n	},\n	{\n		"code": "hi",\n		"name": "हिन्दी"\n	},\n	{\n		"code": "zh-CN",\n		"name": "中文"\n	},\n	{\n		"code": "ja",\n		"name": "日本語"\n	},\n	{\n		"code": "vi",\n		"name": "Tiếng Việt"\n	},\n	{\n		"code": "fr",\n		"name": "Français"\n	},\n	{\n		"code": "de",\n		"name": "Deutsch"\n	},\n	{\n		"code": "ru",\n		"name": "Русский"\n	},\n	{\n		"code": "dk",\n		"name": "Dansk"\n	},\n	{\n		"code": "nl",\n		"name": "Nederlands"\n	},\n	{\n		"code": "ko",\n		"name": "한국어"\n	},\n	{\n		"code": "pt-BR",\n		"name": "Português Brasileiro"\n	},\n	{\n		"code": "tr",\n		"name": "Türkçe"\n	},\n	{\n		"code": "nb-NO",\n		"name": "Norsk Bokmål"\n	},\n	{\n		"code": "pl",\n		"name": "Polski"\n	},\n	{\n		"code": "es",\n		"name": "Español"\n	},\n	{\n		"code": "it",\n		"name": "Italiano"\n	},\n	{\n		"code": "fa",\n		"name": "Persian (فارسی)"\n	}\n]\n';
+export {
+  locales as l
+};

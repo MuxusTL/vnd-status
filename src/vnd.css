@@ -601,14 +601,14 @@ header nav a:hover {
   justify-content: space-between !important;
   width: 100% !important;
   gap: 2px !important;
-  padding: 0.5rem 0 !important;
+  padding: 0.35rem 0 !important;
   overflow-x: hidden !important;
   overflow-y: hidden !important;
 }
 
 @media (max-width: 640px) {
   .daygrid90 {
-    gap: 1px !important;
+    gap: 1.5px !important;
   }
 }
 
@@ -616,7 +616,7 @@ header nav a:hover {
   cursor: pointer !important;
   transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
-  height: 36px !important;
+  height: 42px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -628,18 +628,36 @@ header nav a:hover {
 }
 
 .oneline-in {
-  height: 30px !important;
+  height: 36px !important;
   width: 100% !important;
-  max-width: 6px !important;
-  border-radius: 2px !important;
-  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  max-width: 12px !important;
+  min-width: 2.5px !important;
+  border-radius: 3px !important;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), filter 0.15s ease, box-shadow 0.15s ease !important;
 }
 
 .oneline:hover .oneline-in {
-  transform: scaleY(1.22) scaleX(1.1) !important;
-  box-shadow: 0 0 8px currentColor !important;
+  transform: scaleY(1.12) !important;
   filter: brightness(1.2) !important;
   z-index: 10 !important;
+}
+
+.oneline.is-active .oneline-in {
+  transform: scaleY(1.14) !important;
+  filter: brightness(1.25) !important;
+  box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary)) !important;
+  z-index: 20 !important;
+}
+
+@media (max-width: 640px) {
+  .oneline {
+    height: 34px !important;
+  }
+  .oneline-in {
+    height: 28px !important;
+    border-radius: 2px !important;
+    min-width: 2px !important;
+  }
 }
 
 /* Tooltip on Bar Hover (Dark themed for maximum contrast in both modes) */
