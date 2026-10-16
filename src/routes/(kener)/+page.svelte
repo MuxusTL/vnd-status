@@ -86,7 +86,7 @@
 </svelte:head>
 <div class="mt-12"></div>
 {#if data.hero}
-  <section class="section-hero mx-auto mb-8 flex w-full max-w-[655px] flex-1 flex-col items-start justify-center">
+  <section class="section-hero mx-auto mb-8 flex w-full max-w-[740px] flex-1 flex-col items-start justify-center">
     <div class="mx-auto max-w-3xl text-center">
       {#if data.hero.image}
         <GMI src={data.hero.image} classList="m-auto mb-2 h-14 w-14" alt="" srcset="" />
@@ -110,7 +110,7 @@
   {@const isMaint = !isDown && !isDegraded && data.systemDataMessage.maintenancePercentage > 0}
   {@const statusType = isDown ? "down" : isDegraded ? "degraded" : isMaint ? "maintenance" : "up"}
   <div
-    class="section-actions status-color-banner status-banner-{statusType} relative mx-auto mb-10 flex w-full max-w-[655px] flex-col items-center justify-center"
+    class="section-actions status-color-banner status-banner-{statusType} relative mx-auto mb-10 flex w-full max-w-[740px] flex-col items-center justify-center"
   >
     <div class="z-20 w-full overflow-hidden rounded-2xl border bg-card shadow-md transition-all">
       <div class="flex items-center justify-between gap-x-2 px-4 py-3.5">
@@ -155,7 +155,7 @@
   </div>
 {/if}
 <div
-  class="section-actions relative mx-auto mb-8 flex w-full max-w-[655px] flex-1 flex-col items-center justify-center"
+  class="section-actions relative mx-auto mb-8 flex w-full max-w-[740px] flex-1 flex-col items-center justify-center"
 >
   <div class="flex w-full flex-wrap items-center justify-center gap-2 rounded-xl border border-border/70 bg-card/60 p-1.5 shadow-sm backdrop-blur-md">
     {#if data.canSendEmail && data.canUsersSubscribe}
@@ -180,7 +180,7 @@
   </div>
 </div>
 {#if data.pageType != "home"}
-  <section class="section-back mx-auto my-2 flex w-full max-w-[655px] flex-1 flex-col items-start justify-center">
+  <section class="section-back mx-auto my-2 flex w-full max-w-[740px] flex-1 flex-col items-start justify-center">
     <Button
       variant="outline"
       class="bounce-left h-8 rounded-lg border border-border/70 bg-card/70 px-3 text-xs font-medium text-muted-foreground hover:bg-secondary hover:text-foreground justify-start backdrop-blur-md"
@@ -204,7 +204,7 @@
 {/if}
 {#if data.allRecentIncidents.length + data.allRecentMaintenances.length > 0}
   <section
-    class="section-events mx-auto mb-8 flex w-full max-w-[655px] flex-1 flex-col items-start justify-center"
+    class="section-events mx-auto mb-8 flex w-full max-w-[740px] flex-1 flex-col items-start justify-center"
     id=""
   >
     <div class="mb-2 grid w-full grid-cols-2 gap-4">
@@ -251,7 +251,7 @@
 {/if}
 {#if data.monitors.length > 0}
   <section
-    class="section-legend mx-auto mb-2 flex w-full flex-1 flex-col items-start justify-center bg-transparent md:w-[655px]"
+    class="section-legend mx-auto mb-2 flex w-full max-w-[740px] flex-1 flex-col items-start justify-center bg-transparent"
     id=""
   >
     <div class="flex w-full flex-col justify-between gap-4 md:flex-row">
@@ -286,7 +286,7 @@
     </div>
   </section>
   <section
-    class="section-monitors z-20 mx-auto mb-8 flex w-full max-w-[655px] flex-1 flex-col items-center justify-center"
+    class="section-monitors z-20 mx-auto mb-8 flex w-full max-w-[740px] flex-1 flex-col items-center justify-center"
   >
     <Card.Root class="monitor-root w-full">
       <Card.Content class="monitors-card  p-0 ">
@@ -305,7 +305,7 @@
 {/if}
 {#if data.site.categories && data.pageType == "home"}
   <section
-    class="section-categories relative z-10 mx-auto mb-8 w-full max-w-[655px] flex-1 flex-col items-start backdrop-blur-[2px] md:w-[655px]"
+    class="section-categories relative z-10 mx-auto mb-8 w-full max-w-[740px] flex-1 flex-col items-start backdrop-blur-[2px]"
   >
     {#each data.site.categories.filter((category) => category.name != "Home" && (!!!category.isHidden || $page.data.isLoggedIn)) as category}
       <a href={`?category=${category.name}`} rel="external">
@@ -333,7 +333,7 @@
   </section>
 {/if}
 <section
-  class="section-browser-events mx-auto mb-2 flex w-full max-w-[655px] flex-1 flex-col items-start justify-center bg-transparent"
+  class="section-browser-events mx-auto mb-2 flex w-full max-w-[740px] flex-1 flex-col items-start justify-center bg-transparent"
   id=""
 >
   <a

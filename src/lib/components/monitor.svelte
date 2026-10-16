@@ -41,6 +41,7 @@
   let incidents = {};
   let dayIncidentsFull = [];
   let homeDataMaxDays = monitor.pageData.homeDataMaxDays;
+  let daygridEl;
 
   let dimension = {
     x1: 6,
@@ -95,11 +96,14 @@
 
   function scrollToRight() {
     setTimeout(() => {
+      if (daygridEl) {
+        daygridEl.scrollLeft = daygridEl.scrollWidth;
+      }
       let divs = document.querySelectorAll(".daygrid90");
       divs.forEach((div) => {
         div.scrollLeft = div.scrollWidth;
       });
-    }, 1000 * 0.2);
+    }, 120);
   }
 
   function returnUptimeRollers() {
@@ -238,7 +242,7 @@
   }
 </script>
 
-<div class="monitor relative {showDailyDataModal ? 'z-40' : 'z-0'} grid w-full max-w-[655px] grid-cols-12 gap-2 pb-2 pt-0">
+<div class="monitor relative {showDailyDataModal ? 'z-40' : 'z-0'} grid w-full max-w-[740px] grid-cols-12 gap-2 pb-2 pt-0">
   {#if !!!embed}
     <div class="col-span-12 w-full">
       <div class="pt-0">
@@ -346,7 +350,10 @@
           selectedBar = null;
         }}
       >
-        <div class="daygrid90 flex w-full min-h-[46px] items-center justify-between gap-[1.5px] sm:gap-[2px] py-1.5 overflow-x-hidden">
+        <div
+          bind:this={daygridEl}
+          class="daygrid90 flex w-full min-h-[48px] items-center justify-start gap-[2px] sm:gap-[2.5px] py-1.5 overflow-x-auto overflow-y-visible scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
           {#each Object.entries(_90Day) as [ts, bar]}
             <button
               data-ts={ts}
@@ -357,17 +364,17 @@
               on:click={(e) => {
                 dailyDataGetter(e, bar, incidents[ts]);
               }}
-              class="oneline h-[38px] flex-1 min-w-0 {bar.border ? 'opacity-100' : 'opacity-25'} {selectedTs == ts ? 'is-active' : ''} p-0 flex items-center justify-center transition-all group"
+              class="oneline h-[40px] sm:h-[44px] flex-1 min-w-[6.5px] sm:min-w-[7px] max-w-[14px] shrink-0 sm:shrink {bar.border ? 'opacity-100' : 'opacity-25'} {selectedTs == ts ? 'is-active' : ''} p-0 flex items-center justify-center transition-all group"
             >
               <div
-                class="oneline-in h-[32px] sm:h-[34px] w-full bg-{bar.cssClass} mx-auto rounded-[3px] group-hover:scale-y-110 group-hover:brightness-110 transition-all {selectedTs == ts ? 'scale-y-110 brightness-125 ring-2 ring-primary ring-offset-1 ring-offset-background' : ''}"
+                class="oneline-in h-[34px] sm:h-[38px] w-full bg-{bar.cssClass} mx-auto rounded-[2.5px] sm:rounded-[3px] group-hover:scale-y-110 group-hover:brightness-110 transition-all {selectedTs == ts ? 'scale-y-110 brightness-125 ring-2 ring-primary ring-offset-1 ring-offset-background' : ''}"
               ></div>
               <!-- incident dot -->
               {#if !!incidents[ts]}
                 <div
                   class="bg-api-{incidents[
                     ts
-                  ].monitor_impact.toLowerCase()} comein absolute -bottom-[3px] left-1/2 -translate-x-1/2 h-[4px] w-[4px] rounded-full ring-1 ring-background"
+                  ].monitor_impact.toLowerCase()} comein absolute -bottom-[4px] left-1/2 -translate-x-1/2 h-[4px] w-[4px] rounded-full ring-1 ring-background"
                 ></div>
               {/if}
             </button>

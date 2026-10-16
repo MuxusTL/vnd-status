@@ -2,6 +2,7 @@
 node_modules
 static/kener
 build
+.vercel
 config/monitors.yaml
 config/site.yaml
 config/server.yaml
